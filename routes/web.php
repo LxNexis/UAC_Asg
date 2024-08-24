@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,14 @@ Route::middleware(['auth', 'paid'])->group(function(){
 
     Route::get('/chat/process', [ChatController::class, 'index'])->name('chat.index');
     Route::post('/chat', [ChatController::class, 'store'])->name('chat.store');
+
+    Route::get('/profile', [HomeController::class, 'profile'])->name('user.profile');
+    Route::post('/profile/logout', [SessionController::class, 'logout'])->name('user.logout');
+
+    Route::post('/friend-detail', [FriendController::class, 'friendDetail'])->name('friend.detail');
 });
 
+Route::get('/locale/{loc}', function ($loc) {
+    Session::put('locale', $loc);
+    return redirect()->back();
+})->name('locale');

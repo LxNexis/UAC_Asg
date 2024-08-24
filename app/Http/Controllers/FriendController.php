@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Events\MessageSent;
 use App\Models\Message;
 use DB;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class FriendController extends Controller
 {
     public function friendRequest(Request $request){
+
+        $loc = session()->get('locale');
+        App::setLocale($loc);
+
         $userId = $request['id'];
 
         $check = DB::table('pendings')
@@ -40,6 +46,10 @@ class FriendController extends Controller
     }
 
     public function requestView(){
+
+        $loc = session()->get('locale');
+        App::setLocale($loc);
+
         $userId = auth()->user()->id;
 
         $usersCome = DB::table('pendings')
@@ -58,6 +68,9 @@ class FriendController extends Controller
     }
 
     public function friends(){
+        $loc = session()->get('locale');
+        App::setLocale($loc);
+
         $userId = auth()->id(); // Get the current logged-in user's ID
 
         $friends = DB::table('friends')
@@ -88,4 +101,11 @@ class FriendController extends Controller
         
             return response()->json(['status' => 'Message sent!']);
         }
+
+    public function friendDetail(Request $request){
+        $id = $request['id'];
+        $user = User::findOrFail($id);
+
+        return view('detail', compact('user'));
+    }
 }

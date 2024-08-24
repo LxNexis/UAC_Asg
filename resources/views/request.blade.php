@@ -3,30 +3,37 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-6 p-3">
-            <h3>Pending Friend Request</h3>
-            @forelse ($usersGo as $user)
-                <div class="d-flex justify-content-between">
-                    <p>{{ $user->name }}</p>
-                    Pending
-                </div>
-            @empty
-                There's no pending friend request at the moment
-            @endforelse
+        <!-- Pending Friend Requests -->
+        <div class="col-md-6 p-3">
+            <div class="border p-3 rounded shadow-sm">
+                <h3 class="mb-3">{{ __('messages.pending_friend_requests') }}</h3>
+                @forelse ($usersGo as $user)
+                    <div class="d-flex justify-content-between align-items-center mb-2 p-2 border-bottom">
+                        <p class="mb-0">{{ $user->name }}</p>
+                        <span class="badge bg-secondary">{{ __('messages.pending') }}</span>
+                    </div>
+                @empty
+                    <p>{{ __('messages.no_pending_requests') }}</p>
+                @endforelse
+            </div>
         </div>
-        <div class="col-6 p-3">
-            <h3>Incoming Friend Request</h3>
-            @forelse ($usersCome as $user)
-                <div class="d-flex justify-content-between">
-                    <p>{{ $user->name }}</p>
-                    <form action="{{ route('friend.request', ['id' => $user->id]) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">Accept</button>
-                    </form>
-                </div>
-            @empty
-                There's no incoming friend request at the moment
-            @endforelse
+
+        <!-- Incoming Friend Requests -->
+        <div class="col-md-6 p-3">
+            <div class="border p-3 rounded shadow-sm">
+                <h3 class="mb-3">{{ __('messages.incoming_friend_requests') }}</h3>
+                @forelse ($usersCome as $user)
+                    <div class="d-flex justify-content-between align-items-center mb-2 p-2 border-bottom">
+                        <p class="mb-0">{{ $user->name }}</p>
+                        <form action="{{ route('friend.request', ['id' => $user->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">{{ __('messages.accept') }}</button>
+                        </form>
+                    </div>
+                @empty
+                    <p>{{ __('messages.no_incoming_requests') }}</p>
+                @endforelse
+            </div>
         </div>
     </div>
 </div>
