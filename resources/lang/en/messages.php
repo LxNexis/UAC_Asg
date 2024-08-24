@@ -2,7 +2,7 @@
 
 return [
     // Navbar
-    'navbar' => 'Navbar',
+    'navbar' => 'Connect Friend',
     'toggle_navigation' => 'Toggle navigation',
     'home' => 'Home',
     'friends' => 'Friends',
@@ -98,5 +98,31 @@ return [
 
     'user_details' => 'User Details',
     'back_to_list' => 'Back to List',
+
+    'title' => 'Avatar Shop',
+    'price' => 'Price',
+    'buy_now' => 'Buy Now',
+
+    'topup_coins' => 'Top Up Coins',
+    'current_balance' => 'Current Balance',
+    'coins' => 'coins',
+    'add_100_coins' => 'Add 100 Coins',
+
+    'avatar_shop' => 'Avatar Shop',
+    'buy_avatar' => 'Buy Avatar',
+    'avatar_purchased' => 'Avatar purchased successfully!',
+    'insufficient_funds' => 'You do not have enough money to purchase this avatar.',
+
+    'settings' => 'Settings',
+    'coin_topup' => 'Hide Profile Picture for 50 Coins',
+    'hide_profile' => 'Hide Profile Picture',
+    'profile_hidden' => 'Your profile picture has been hidden.',
+
+    'unhide_profile' => 'Unhide Profile',
+    'profile_unhidden' => 'Your profile has been made visible again.',
+
+    'bought_avatars' => 'Bought Avatars',
+    'purchased' => 'Purchased',
+    'no_bought_avatars' => 'You have not bought any avatars yet.',
 ];
 

@@ -78,11 +78,11 @@
                     <label class="form-label">{{ __('messages.interests') }}</label>
                     <div class="btn-group d-flex flex-wrap" role="group" aria-label="Interests">
                         @foreach ($interests as $i)
-                            <input type="checkbox" class="btn-check" name="interests[]" id="interest{{ $i->id }}" value="{{ $i->id }}" {{ in_array($i->id, old('interests', [])) ? 'checked' : '' }}>
+                            <input type="checkbox" class="btn-check" name="checkboxes[]" id="interest{{ $i->id }}" value="{{ $i->id }}" {{ in_array($i->id, old('checkboxes', [])) ? 'checked' : '' }}>
                             <label class="btn btn-outline-primary me-2 mb-2" for="interest{{ $i->id }}">{{ $i->name }}</label>
                         @endforeach
                     </div>
-                    @error('interests')
+                    @error('checkboxes')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>

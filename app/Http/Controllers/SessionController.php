@@ -70,7 +70,7 @@ class SessionController extends Controller
             'phone' => 'required|numeric',
             'experience' => 'required|numeric',
             'linkedin' => ['required', 'regex:/^http:\/\/www\.linkedin\.com\/[a-zA-Z0-9._]+$/'],
-            'flexRadioDefault' => 'required|in:Male,Female',
+            'gender' => 'required|in:Male,Female',
             'checkboxes' => 'required|array|min:3',
         ];
 
@@ -79,7 +79,7 @@ class SessionController extends Controller
             'email' => 'isi field dengan email yang benar',
             'password.min' => 'field password minimal 6 huruf',
             'linkedin.regex' => 'The Instagram URL must be in the format http://www.linkedin.com/username.',
-            'flexRadioDefault.in' => 'pilih diantara male dan female',
+            'name.in' => 'pilih diantara male dan female',
             'checkboxes.min' => 'isi minimal 3',
             'numeric' => 'field harus berupa angka',
             ];
@@ -103,6 +103,8 @@ class SessionController extends Controller
             $user->registerFee = random_int(100000, 125000);
             $user->money = 0;
             $user->profile_pic = random_int(1, 3) . '.png';
+            $user->visibility = 0;
+            $user->bear_pic = '1.png';
 
             if($selectedRadio == 'Male'){
                 $user->gender = 1;

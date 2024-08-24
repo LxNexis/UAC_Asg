@@ -1,5 +1,7 @@
 @extends('layout.master')
 
+@section('homeA', 'active')
+
 @section('content')
 <div class="container mt-5">
     <!-- Flash Messages -->

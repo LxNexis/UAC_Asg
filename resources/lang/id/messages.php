@@ -2,7 +2,7 @@
 
 return [
     // Navbar
-    'navbar' => 'Navbar',
+    'navbar' => 'Connect Friend',
     'toggle_navigation' => 'Alihkan navigasi',
     'home' => 'Beranda',
     'friends' => 'Teman',
@@ -99,4 +99,30 @@ return [
 
     'user_details' => 'Detil User',
     'back_to_list' => 'Kembali ke List',
+
+    'title' => 'Toko Avatar',
+    'price' => 'Harga',
+    'buy_now' => 'Beli Sekarang',
+
+    'topup_coins' => 'Isi Ulang Koin',
+    'current_balance' => 'Saldo Saat Ini',
+    'coins' => 'koin',
+    'add_100_coins' => 'Tambah 100 Koin',
+
+    'avatar_shop' => 'Toko Avatar',
+    'buy_avatar' => 'Beli Avatar',
+    'avatar_purchased' => 'Avatar berhasil dibeli!',
+    'insufficient_funds' => 'Anda tidak memiliki cukup uang untuk membeli avatar ini.',
+
+    'settings' => 'Pengaturan',
+    'coin_topup' => 'Sembunyikan Foto Profil dengan 50 Koin',
+    'hide_profile' => 'Sembunyikan Foto Profil',
+    'profile_hidden' => 'Foto profil Anda telah disembunyikan.',
+
+    'unhide_profile' => 'Tampilkan Profil',
+    'profile_unhidden' => 'Profil Anda telah ditampilkan kembali',
+
+    'bought_avatars' => 'Avatar yang Dibeli',
+    'purchased' => 'Dibeli',
+    'no_bought_avatars' => 'Anda belum membeli avatar apapun.',
 ];

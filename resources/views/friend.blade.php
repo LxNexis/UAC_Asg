@@ -1,5 +1,7 @@
 @extends('layout.master')
 
+@section('friendA', 'active')
+
 @section('content')
 <div class="container mt-4">
     <div class="row mb-3">

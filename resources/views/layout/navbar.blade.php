@@ -8,20 +8,29 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mx-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('home.index') }}">{{ __('messages.home') }}</a>
+        <a class="nav-link @yield('homeA')" href="{{ route('home.index') }}">{{ __('messages.home') }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('friend.index') }}">{{ __('messages.friends') }}</a>
+        <a class="nav-link @yield('friendA')" href="{{ route('friend.index') }}">{{ __('messages.friends') }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('friend.request_view') }}">{{ __('messages.request') }}</a>
+        <a class="nav-link @yield('requestA')" href="{{ route('friend.request_view') }}">{{ __('messages.request') }}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link @yield('shopA')" href="{{ route('avatar.index') }}">Shop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link @yield('topupA')" href="{{ route('topup.show') }}">Topup</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link @yield('myavatarA')" href="{{ route('myavatar.show') }}">Avatar</a>
       </li>
     </ul>
   </div>
 
   <a href="{{ route('user.profile') }}" class="d-flex align-items-center">
     <img src="{{ asset('asset/profile_pic/' . auth()->user()->profile_pic) }}" class="imgProfile rounded-circle" alt="{{ __('messages.profile_picture') }}">
-    <span class="ms-2">{{ auth()->user()->name }}</span>
+    <span class="ms-2" style="text-decoration: none; color: black;" class="text-underline-none">{{ auth()->user()->name }}</span>
   </a>
 
   <div class="dropdown ms-3">

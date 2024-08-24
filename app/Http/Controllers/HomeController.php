@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App;
+use Auth;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -75,6 +76,7 @@ class HomeController extends Controller
 
             // Query to get users who are not friends or pending with the authenticated user
             $usersQuery = DB::table('users')
+                ->where('visibility', 0) // Ensure only visible users are shown
                 ->whereNotIn('users.id', $excludedIds)
                 ->leftJoin('user_interests', 'users.id', '=', 'user_interests.user_id')
                 ->leftJoin('interests', 'user_interests.interest_id', '=', 'interests.id')
@@ -116,4 +118,70 @@ class HomeController extends Controller
 
         return view('profile');
     }
+
+    public function topup(){
+        $loc = session()->get('locale');
+        App::setLocale($loc);
+
+        return view('topup');
+    }
+
+    public function coinTopup(Request $request){
+        $user = auth()->user();
+
+        $user->money += 100;
+        $user->save();
+
+        return redirect()->route('topup.show');
+    }
+
+    public function hide(Request $request)
+    {
+        $user = Auth::user();
+
+        if ($user->money < 50) {
+            return redirect()->route('user.profile')->with('error', __('messages.insufficient_funds'));
+        }
+
+        // Deduct 50 coins
+        $user->money -= 50;
+        $user->visibility = 1;
+        $user->save();
+
+        // Replace profile picture with a random bear image
+        $bearImages = ['1.png', '2.png', '3.png'];
+        $randomBear = $bearImages[array_rand($bearImages)];
+        $user->profile_pic = $randomBear;
+        $user->save();
+
+        return redirect()->route('user.profile')->with('success', __('messages.profile_hidden'));
+    }
+
+    public function unhide(Request $request)
+    {
+        $user = Auth::user();
+
+        if ($user->money < 5) {
+            return redirect()->route('user.profile')->with('error', __('messages.insufficient_funds'));
+        }
+
+        // Deduct 50 coins
+        $user->money -= 5;
+        $user->visibility = 0;
+        $user->save();
+
+        return redirect()->route('user.profile')->with('success', __('messages.profile_unhidden'));
+    }
+
+    public function showBoughtAvatars()
+{
+    $userId = auth()->id();
+    $boughtAvatars = DB::table('user_avatars')
+        ->join('avatars', 'user_avatars.avatars_id', '=', 'avatars.id')
+        ->where('user_avatars.user_id', $userId)
+        ->select('avatars.name', 'avatars.pic', 'avatars.price')
+        ->get();
+
+    return view('my_avatars', compact('boughtAvatars'));
+}
 }

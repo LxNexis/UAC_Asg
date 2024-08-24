@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\HomeController;
@@ -31,8 +32,17 @@ Route::middleware(['auth', 'paid'])->group(function(){
 
     Route::get('/profile', [HomeController::class, 'profile'])->name('user.profile');
     Route::post('/profile/logout', [SessionController::class, 'logout'])->name('user.logout');
+    Route::put('/profile/hide', [HomeController::class, 'hide'])->name('profile.hide');
+    Route::put('/profile/unhide', [HomeController::class, 'unhide'])->name('profile.unhide');
 
     Route::post('/friend-detail', [FriendController::class, 'friendDetail'])->name('friend.detail');
+
+    Route::get('/avatar', [AvatarController::class, 'index'])->name('avatar.index');
+    Route::post('/avatar/buy', [AvatarController::class, 'buyAvatar'])->name('avatar.buy');
+    Route::get('/avatar/show', [HomeController::class, 'showBoughtAvatars'])->name('myavatar.show');
+
+    Route::get('/topup', [HomeController::class, 'topup'])->name('topup.show');
+    Route::put('/topup-process', [HomeController::class, 'coinTopup'])->name('coins.topup');
 });
 
 Route::get('/locale/{loc}', function ($loc) {

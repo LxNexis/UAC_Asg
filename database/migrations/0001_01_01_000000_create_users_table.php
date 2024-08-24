@@ -25,6 +25,8 @@ return new class extends Migration
             $table->integer('registerFee');
             $table->tinyInteger('hasPaid');
             $table->string('profile_pic');
+            $table->tinyInteger('visibility');
+            $table->string('bear_pic');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Avatar;
 use App\Models\Interest;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
         Interest::factory(5)->create();
+        Avatar::factory(10)->create();
 
         $userIds = DB::table('users')->pluck('id')->take(10); // Get the first 10 users
         $interestIds = DB::table('interests')->pluck('id')->toArray(); // Get all interest ids

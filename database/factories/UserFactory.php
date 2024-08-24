@@ -35,6 +35,8 @@ class UserFactory extends Factory
             'work_years' => random_int(1, 20),
             'registerFee' => random_int(100000, 125000),
             'money' => random_int(10000, 20000),
+            'visibility' => 0,
+            'bear_pic' => '1.png',
             'hasPaid' => 1,
             'remember_token' => Str::random(10),
         ];
