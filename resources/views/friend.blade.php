@@ -14,7 +14,7 @@
                     </a>
                 @endif
             @empty
-                <h3>There's no friend currently</h3>
+                <h3>There's no friend currentlyf</h3>
             @endforelse
         </div>
     </div>
